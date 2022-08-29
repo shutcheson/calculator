@@ -1,0 +1,116 @@
+#myForm {
+  /*edit the whole form*/
+  margin-top: 100px;
+  padding: 4px;
+  border-radius: 6px;
+  background: linear-gradient(45deg, #edf1f4, 20%, #f3f3f3);
+  margin-left: auto;
+  margin-right: auto;
+  width: 348px;
+}
+
+.topSection {
+  height: 140px;
+  border-radius: 4px;
+}
+
+input {
+  /*edit all the buttons*/
+  width: 76px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 4px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0px 1px #d7d7d7;
+  border: none;
+  outline: none;
+}
+
+/* ::-webkit-input-placeholder {
+  color: black;
+} */
+
+.displayTop {
+  /*edit the section where equations are displayed*/
+  width: 340px;
+  max-height: 50%;
+  text-align: center;
+  background-color: transparent;
+  color: #959595;
+  border: none;
+  box-shadow: none;
+  font-size: 28px;
+  text-align: right;
+}
+
+.displayBottom {
+  /*edit the section where equations are displayed*/
+  width: 340px;
+  max-height: 50%;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  font-size: 38px;
+  text-align: right;
+}
+
+#equals.value {
+  color: white;
+}
+
+.nonNumberEl {
+  font-weight: 700;
+  color: #3e51ba;
+}
+
+#equalsBtn {
+  background-color: #465e7a;
+  color: #fffffd;
+}
+
+.arithmetic.value {
+  font-size: 3px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background: linear-gradient(45deg, #edf1f4, 20%, #f3f3f3);
+  margin: auto;
+  padding: 20px;
+  width: 264px;
+  border-radius: 4px;
+}
+
+/* The Close Button */
+.close {
+  color: rgb(62, 62, 62);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

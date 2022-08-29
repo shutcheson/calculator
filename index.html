@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>calculator</title>
+  </head>
+  <body>
+    <form id="myForm" name="calc">
+      <div class="topSection">
+        <input
+          name="displayTop"
+          class="displayTop"
+          id="displayTop"
+          placeholder="0"
+        />
+        <input name="displayBottom" class="displayBottom" placeholder="0" />
+      </div>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p>Scientific functions</p>
+          <input
+            type="button"
+            value="&#8508;"
+            id="pi--Btn"
+            class="arithmetic"
+          />
+          <input type="button" value="e" id="e--Btn" class="arithmetic" />
+          <input
+            type="button"
+            value="&sup2;"
+            id="dec--Btn"
+            class="arithmetic"
+          />
+          <span class="close">CANCEL</span>
+        </div>
+      </div>
+      <!-- LINE 6 -->
+      <input type="button" id="myBtn" value=" ..." />
+      <input type="button" value=" " />
+      <input type="button" value=" " onclick="calc.display.value+='/'" />
+      <input type="button" value="CE" onclick="backspaceDisplay()" />
+      <!-- LINE 5 -->
+      <input type="button" value="C" onclick="clearDisplay()" />
+      <!-- brackets -->
+      <input type="button" value="()" id="brac--Btn" />
+      <!-- percentage button -->
+      <input type="button" value="&percnt;" onclick="displayPercentage()" />
+      <!-- division button -->
+      <input type="button" value="&#247;" id="div--Btn" class="arithmetic" />
+      <!-- LINE 4 -->
+      <input type="button" value="7" class="numbers" onclick="display7()" />
+      <input type="button" value="8" class="numbers" onclick="display8()" />
+      <input type="button" value="9" class="numbers" onclick="display9()" />
+      <!-- multiply button-->
+      <input type="button" value="x" id="mult--Btn" class="arithmetic" />
+      <!-- LINE 3 -->
+
+      <input type="button" value="4" class="numbers" onclick="display4()" />
+      <input type="button" value="5" class="numbers" onclick="display5()" />
+      <input type="button" value="6" class="numbers" onclick="display6()" />
+      <!-- minus button -->
+      <input type="button" value="-" id="minus--Btn" class="arithmetic" />
+      <!-- LINE 2 -->
+      <input type="button" value="1" class="numbers" onclick="display1()" />
+      <input type="button" value="2" class="numbers" onclick="display2()" />
+      <input type="button" value="3" class="numbers" onclick="display3()" />
+      <!-- addition button -->
+      <input type="button" value="+" id="add--Btn" class="arithmetic" />
+      <!-- LINE 1 -->
+      <input type="button" value="00" class="numbers" onclick="display00()" />
+      <input type="button" value="0" class="numbers" onclick="display0()" />
+      <!-- decimal button-->
+      <input type="button" value="." id="dec--Btn" class="arithmetic" />
+      <!-- equals button-->
+      <input type="button" value="=" id="equals--Btn" />
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
