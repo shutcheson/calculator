@@ -64,12 +64,12 @@ input {
 }
 
 .nonNumberEl {
-  font-weight: 700;
-  color: #3e51ba;
+  font-weight: 550;
+  color: #3e51ba !important;
 }
 
-#equalsBtn {
-  background-color: #465e7a;
+#equals--Btn {
+  background-color: #3e51ba;
   color: #fffffd;
 }
 
@@ -90,6 +90,7 @@ input {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  font-size: 18px;
 }
 
 /* Modal Content */
@@ -101,11 +102,14 @@ input {
   border-radius: 4px;
 }
 
-/* The Close Button */
-.close {
-  color: rgb(62, 62, 62);
-  font-size: 20px;
-  font-weight: bold;
+#canc--Btn {
+  /* padding-left: 30px; */
+  text-align: center !important;
+  width: 160px !important;
+  margin: auto !important;
+  display: flex !important;
+  display: grid !important;
+  font-weight: 500;
 }
 
 .close:hover,

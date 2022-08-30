@@ -17,6 +17,7 @@ const bracBtn = document.querySelector("#brac--Btn");
 // modal elements
 const piBtn = document.querySelector("#pi--Btn");
 const eBtn = document.querySelector("#e--Btn");
+const cancBtn = document.querySelector("#canc--Btn");
 
 const init = function () {
   evalBottom.textContent = 0;
@@ -217,6 +218,11 @@ eBtn.addEventListener("click", function () {
     calc.displayBottom.value = calc.displayBottom.value + "*" + "2.7182818285";
     modal.style.display = "none";
   }
+});
+
+// cancel button
+cancBtn.addEventListener("click", function () {
+  return (modal.style.display = "none");
 });
 
 // Text to speech trial
