@@ -28,97 +28,109 @@
             type="button"
             value="&#8508;"
             id="pi--Btn"
-            class="arithmetic"
+            class="arithmetic btn"
           />
           <input
             type="button"
             value="e"
             id="e--Btn"
-            class="arithmetic nonNumberEl"
+            class="arithmetic nonNumberEl btn"
           />
           <input
             type="button"
             value="&sup2;"
             id="dec--Btn"
-            class="arithmetic"
+            class="arithmetic btn"
           />
-          <input type="button" value="CANCEL" id="canc--Btn" />
+          <input type="button" value="CANCEL" class="btn" id="canc--Btn" />
         </div>
       </div>
       <!-- LINE 6 -->
-      <input type="button" id="myBtn" value=" ..." class="nonNumberEl" />
-      <input type="button" value=" " />
-      <input type="button" value=" " onclick="calc.display.value+='/'" />
+      <input type="button" id="myBtn" value=" ..." class="nonNumberEl btn" />
+      <input type="button" value=" " class="btn" />
+
+      <input type="button" value=" " class="btn" />
       <input
         type="button"
-        class="nonNumberEl"
+        class="nonNumberEl btn"
         value="CE"
         onclick="backspaceDisplay()"
       />
+
       <!-- LINE 5 -->
       <input
         type="button"
         value="C"
-        class="nonNumberEl"
+        class="nonNumberEl btn"
         onclick="clearDisplay()"
       />
-      <!-- brackets -->
-      <input type="button" value="()" id="brac--Btn" class="nonNumberEl" />
-      <!-- percentage button -->
+
+      <input type="button" value="()" id="brac--Btn" class="nonNumberEl btn" />
+
       <input
         type="button"
         value="&percnt;"
-        class="nonNumberEl"
+        class="nonNumberEl btn"
         onclick="displayPercentage()"
       />
-      <!-- division button -->
+
       <input
         type="button"
         value="&#247;"
         id="div--Btn"
-        class="arithmetic nonNumberEl"
+        class="arithmetic nonNumberEl btn"
       />
       <!-- LINE 4 -->
-      <input type="button" value="7" class="numbers" onclick="display7()" />
-      <input type="button" value="8" class="numbers" onclick="display8()" />
-      <input type="button" value="9" class="numbers" onclick="display9()" />
-      <!-- multiply button-->
+      <input type="button" value="7" class="numbers btn" onclick="display7()" />
+      <input type="button" value="8" class="numbers btn" onclick="display8()" />
+      <input type="button" value="9" class="numbers btn" onclick="display9()" />
+
       <input
         type="button"
         value="x"
         id="mult--Btn"
-        class="arithmetic nonNumberEl"
+        class="arithmetic nonNumberEl btn"
       />
       <!-- LINE 3 -->
 
-      <input type="button" value="4" class="numbers" onclick="display4()" />
-      <input type="button" value="5" class="numbers" onclick="display5()" />
-      <input type="button" value="6" class="numbers" onclick="display6()" />
-      <!-- minus button -->
+      <input type="button" value="4" class="numbers btn" onclick="display4()" />
+      <input type="button" value="5" class="numbers btn" onclick="display5()" />
+      <input type="button" value="6" class="numbers btn" onclick="display6()" />
+
       <input
         type="button"
         value="-"
         id="minus--Btn"
-        class="arithmetic nonNumberEl"
+        class="arithmetic nonNumberEl btn"
       />
       <!-- LINE 2 -->
-      <input type="button" value="1" class="numbers" onclick="display1()" />
-      <input type="button" value="2" class="numbers" onclick="display2()" />
-      <input type="button" value="3" class="numbers" onclick="display3()" />
-      <!-- addition button -->
+      <input type="button" value="1" class="numbers btn" onclick="display1()" />
+      <input type="button" value="2" class="numbers btn" onclick="display2()" />
+      <input type="button" value="3" class="numbers btn" onclick="display3()" />
+
       <input
         type="button"
         value="+"
         id="add--Btn"
-        class="arithmetic nonNumberEl"
+        class="arithmetic nonNumberEl btn"
       />
       <!-- LINE 1 -->
-      <input type="button" value="00" class="numbers" onclick="display00()" />
-      <input type="button" value="0" class="numbers" onclick="display0()" />
-      <!-- decimal button-->
-      <input type="button" value="." id="dec--Btn" class="arithmetic" />
-      <!-- equals button-->
-      <input type="button" value="=" id="equals--Btn" />
+      <input
+        type="button"
+        value="00"
+        class="numbers btn"
+        onclick="display00()"
+      />
+      <input type="button" value="0" class="numbers btn" onclick="display0()" />
+
+      <input type="button" value="." id="dec--Btn" class="arithmetic btn" />
+
+      <input type="button" value="=" class="priorityBtn btn" id="equals--Btn" />
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="popup-text">Expression is incorrect</span>
+        </div>
+      </div>
     </form>
     <script src="script.js"></script>
   </body>
