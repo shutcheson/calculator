@@ -5,7 +5,6 @@ const displayField = document.querySelector(".display");
 const evalBottom = document.querySelector(".displayBottom");
 const clearBottomDisplay = document.getElementById("clearBottomDisplay");
 const arithmetic = document.querySelector(".arithmetic");
-const arithCheck = /(\*|=|-|\+|\/|\.|\)|\()$/g;
 
 const eqBtn = document.querySelector("#equals--Btn");
 const decBtn = document.querySelector("#dec--Btn");
@@ -14,11 +13,30 @@ const addBtn = document.querySelector("#add--Btn");
 const multBtn = document.querySelector("#mult--Btn");
 const divBtn = document.querySelector("#div--Btn");
 const bracBtn = document.querySelector("#brac--Btn");
+const micBtn = document.querySelector("#microphone");
+
+// modal elements
+const piBtn = document.querySelector("#pi--Btn");
+const eBtn = document.querySelector("#e--Btn");
+const cancBtn = document.querySelector("#canc--Btn");
+
+//pop up alert
+const popup = document.getElementById("popup");
+
+const arithCheck = /(\*|=|-|\+|\/|\.|\()$/g;
 
 const init = function () {
   evalBottom.textContent = 0;
 };
 init();
+
+function isInvalid() {
+  const arithCheck = /(\*|=|-|\+|\/|\.|\()$/g;
+  return (
+    arithCheck.test(calc.displayBottom.value) &&
+    arithCheck.test(calc.displayBottom) != arithmetic
+  );
+}
 
 // clearBottomDisplay.addEventListener("click", init);
 
@@ -80,10 +98,7 @@ function display00() {
 
 // decimal button
 decBtn.addEventListener("click", function () {
-  if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
-  ) {
+  if (isInvalid()) {
   } else if (calc.displayTop.value === "") {
     calc.displayTop.value += "0.";
     calc.displayBottom.value += "0.";
@@ -95,12 +110,7 @@ decBtn.addEventListener("click", function () {
 
 // Minus button
 minusBtn.addEventListener("click", function () {
-  if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
-  ) {
-  } else if (calc.displayTop.value === "") {
-  } else {
+  if (!isInvalid() && calc.displayTop.value !== "") {
     calc.displayTop.value += "-";
     calc.displayBottom.value += "-";
   }
@@ -108,10 +118,7 @@ minusBtn.addEventListener("click", function () {
 
 // Addition button
 addBtn.addEventListener("click", function () {
-  if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
-  ) {
+  if (isInvalid()) {
   } else if (calc.displayTop.value === "") {
   } else {
     calc.displayTop.value += "+";
@@ -121,10 +128,7 @@ addBtn.addEventListener("click", function () {
 
 // Multiply button
 multBtn.addEventListener("click", function () {
-  if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
-  ) {
+  if (isInvalid()) {
   } else if (calc.displayTop.value === "") {
   } else {
     calc.displayTop.value += "*";
@@ -134,10 +138,7 @@ multBtn.addEventListener("click", function () {
 
 // Divide button
 divBtn.addEventListener("click", function () {
-  if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
-  ) {
+  if (isInvalid()) {
   } else if (calc.displayTop.value === "") {
   } else {
     calc.displayTop.value += "/";
@@ -157,29 +158,35 @@ function backspaceDisplay() {
   calc.displayTop.value = calc.displayTop.value.slice(0, -1);
 }
 
-// equals button
-// eqBtn.addEventListener("click", function () {
-//   if (
-//     arithCheck.test(calc.displayBottom.value) &&
-//     arithCheck.test(calc.displayTop.value) != arithmetic
-//   ) {
-//   } else if (calc.displayTop.value === "") {
-//   } else {
-//     calc.displayTop.value += "=";
-//     calc.displayBottom.value = eval(calc.displayBottom.value);
-//   }
-// });
-
 eqBtn.addEventListener("click", function () {
-  if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
-  ) {
+  if (isInvalid()) {
+    showPopup();
+    // Handle invalid expression (you can add code here if needed)
   } else if (calc.displayTop.value === "") {
+    // Handle empty displayTop (you can add code here if needed)
   } else {
-    calc.displayBottom.value = eval(calc.displayBottom.value);
+    try {
+      const result = eval(calc.displayBottom.value);
+      calc.displayBottom.value = result;
+    } catch (error) {
+      // Handle any errors that may occur during evaluation
+    }
   }
 });
+
+// Function to show the popup
+function showPopup() {
+  popup.style.display = "block";
+  // Hide the popup after 2 seconds (adjust the delay as needed)
+  setTimeout(() => {
+    hidePopup();
+  }, 2000);
+}
+
+// Function to hide the popup
+function hidePopup() {
+  popup.style.display = "none";
+}
 
 // percentage button
 function displayPercentage() {
@@ -188,27 +195,88 @@ function displayPercentage() {
 
 // Brackets button
 bracBtn.addEventListener("click", function () {
+  const currentDisplayTop = calc.displayTop.value;
+  const currentDisplayBottom = calc.displayBottom.value;
+
+  // Define a regular expression to check for arithmetic operators
+  const arithmeticOperators = /[+\-*/]/;
+
   if (
-    arithCheck.test(calc.displayBottom.value) &&
-    arithCheck.test(calc.displayTop.value) != arithmetic
+    arithmeticOperators.test(currentDisplayTop.slice(-1)) ||
+    currentDisplayTop === ""
   ) {
-  } else if (calc.displayTop.value === "") {
+    // If the last character in displayTop is an operator or displayTop is empty, add an opening parenthesis
+    calc.displayTop.value += "(";
+    calc.displayBottom.value += "(";
+  } else if (arithCheck.test(currentDisplayBottom)) {
+    // If the last character in displayBottom is an operator, append an opening parenthesis
+    calc.displayTop.value += "(";
+    calc.displayBottom.value += "(";
   } else {
-    calc.displayTop.value = "(" + calc.displayTop.value + ")";
-    calc.displayBottom.value = "(" + calc.displayBottom.value + ")";
+    // If none of the above conditions match, check if the last character in displayTop is a number
+    const lastCharTop = currentDisplayTop.slice(-1);
+    if (!isNaN(lastCharTop) || lastCharTop === ".") {
+      // If the last character in displayTop is a number or a decimal point, add a closing parenthesis
+      calc.displayTop.value += ")";
+      calc.displayBottom.value += ")";
+    } else {
+      // Otherwise, add an opening parenthesis
+      calc.displayTop.value += "(";
+      calc.displayBottom.value += "(";
+    }
   }
 });
 
-// Text to speech trial
-let convert = document.querySelector(".convert");
-let textarea = document.querySelector(".textarea");
-let speech = new SpeechSynthesisUtterance();
-
-convert.addEventListener("click", () => {
-  speech.text = textarea.value;
-  speech.pitch = 3;
-  speech.volume = 1;
-  speech.lang = "eng-US";
-  speech.rate = 1.25;
-  speechSynthesis.speak(speech);
+// Modal buttons
+// Pi button
+piBtn.addEventListener("click", function () {
+  if (calc.displayTop.value === "") {
+    calc.displayTop.value = calc.displayTop.value + "\u03a0";
+    calc.displayBottom.value = calc.displayBottom.value + "3.1415926536";
+    modal.style.display = "none";
+  } else if (calc.displayTop.value != "") {
+    calc.displayTop.value = calc.displayTop.value + "*" + "\u03a0";
+    calc.displayBottom.value = calc.displayBottom.value + "*" + "3.1415926536";
+    modal.style.display = "none";
+  }
 });
+
+// e button
+eBtn.addEventListener("click", function () {
+  if (calc.displayTop.value === "") {
+    calc.displayTop.value = calc.displayTop.value + "e";
+    calc.displayBottom.value = calc.displayBottom.value + "2.7182818285";
+    modal.style.display = "none";
+  } else if (calc.displayTop.value != "") {
+    calc.displayTop.value = calc.displayTop.value + "*" + "e";
+    calc.displayBottom.value = calc.displayBottom.value + "*" + "2.7182818285";
+    modal.style.display = "none";
+  }
+});
+
+// cancel button
+cancBtn.addEventListener("click", function () {
+  return (modal.style.display = "none");
+});
+
+// Modal
+// Get the modal
+const modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+const btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
